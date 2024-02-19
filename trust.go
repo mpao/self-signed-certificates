@@ -51,13 +51,13 @@ func (t *Trust) Client(timeout time.Duration) *http.Client {
 }
 
 // StartServer avvia un server HTTPS configurato per gestire le richieste definite dal Trust
-func (t *Trust) StartServer(mux *http.ServeMux, port int) error {
+func (t *Trust) StartServer(h http.Handler, port int) error {
 	server := &http.Server{
 		Addr:         fmt.Sprintf(":%d", port),
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
 		IdleTimeout:  30 * time.Second,
-		Handler:      mux,
+		Handler:      h,
 		TLSConfig: &tls.Config{
 			MinVersion: tls.VersionTLS12,
 			ClientCAs:  t.Pool,
