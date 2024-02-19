@@ -1,0 +1,6 @@
+.vscode/
+.idea/
+localhost.crt
+localhost.key
+localCA.crt
+.golangci.yaml

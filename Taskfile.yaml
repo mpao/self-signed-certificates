@@ -1,0 +1,26 @@
+version: "3"
+
+tasks:
+  lint:
+    cmds:
+      - golangci-lint cache clean && golangci-lint run ./...
+  cert:
+    dir: ./sample
+    cmds:
+      - chmod +x certs.sh
+      - ./certs.sh
+  clean:
+    dir: ./sample
+    cmds:
+      - rm localCA.crt localhost.crt localhost.key
+  test:
+    cmds:
+      - task: lint
+      - task: cert
+      - go test -race -count=1 ./... -v -cover
+      - task: clean
+  sample:
+    dir: ./sample
+    cmds:
+      - task: cert
+      - go run main.go
