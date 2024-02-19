@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	"ssc"
+	"github.com/mpao/ssc"
 )
 
 func main() {
