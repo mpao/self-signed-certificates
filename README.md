@@ -8,7 +8,7 @@ func main() {
 		_, _ = w.Write([]byte("hello server"))
 	})
 	// crea il Trust con i tuoi certificati self signed
-	t, err := https.NewTrust("localhost.crt", "localhost.key", "localCA.crt", tls.RequireAndVerifyClientCert)
+	t, err := ssc.NewTrust("localhost.crt", "localhost.key", "localCA.crt", tls.RequireAndVerifyClientCert)
 	if err != nil {
 		log.Fatal(err)
 	}
